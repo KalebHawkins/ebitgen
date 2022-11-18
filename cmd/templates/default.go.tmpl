@@ -1,0 +1,34 @@
+package main
+
+import "github.com/hajimehoshi/ebiten/v2"
+
+const (
+    scrWidth = {{.Width}}
+    scrHeight = {{.Height}}
+)
+
+type Game struct {}
+
+func (g *Game) Update() error {
+
+    return nil
+}
+
+func (g *Game) Draw(scr *ebiten.Image) {}
+
+func (g *Game) Layout( outWidth, outHeight int) (int, int) {
+    return scrWidth, scrHeight
+}
+
+func NewGame() *Game {
+    return &Game{}
+}
+
+func main() {
+    ebiten.SetWindowSize(scrWidth, scrHeight)
+    ebiten.SetWindowTitle("{{.Title}}")
+
+    if err := ebiten.RunGame(NewGame()); err != nil {
+        panic(err)
+    }
+}
